@@ -1,0 +1,335 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --clr-500: #00ff00;
+  --clr-600: #20c716;
+  --clr-700: #24911a;
+  --clr-800: #215f18;
+  --clr-900: #173112;
+  --clr-light-500: #ffffff;
+  --clr-light-600: #c6c6c6;
+  --clr-light-700: #919191;
+  --clr-light-800: #444;
+  --clr-light-900: #222;
+  --fs-0: clamp(0.52rem, calc(0.42rem + 0.49vw), 0.8rem);
+  --fs-1: clamp(0.63rem, calc(0.49rem + 0.65vw), 1rem);
+  --fs-2: clamp(0.75rem, calc(0.58rem + 0.87vw), 1.25rem);
+  --fs-3: clamp(0.9rem, calc(0.67rem + 1.15vw), 1.56rem);
+  --fs-4: clamp(1.08rem, calc(0.78rem + 1.52vw), 1.95rem);
+  --fs-5: clamp(1.3rem, calc(0.9rem + 1.99vw), 2.44rem);
+  --fs-6: clamp(1.56rem, calc(1.03rem + 2.6vw), 3.05rem);
+  --fs-7: clamp(1.87rem, calc(1.19rem + 3.39vw), 3.82rem);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: var(--fs-1);
+  font-family: "Cairo", sans-serif;
+  color: #ffffff;
+}
+
+html {
+  color-scheme: dark;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: var(--fs-4);
+}
+h2 {
+  font-size: var(--fs-3);
+}
+h3 {
+  font-size: var(--fs-2);
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+/* Start Components */
+
+.sm-btn {
+  font-size: var(--fs-2);
+  cursor: pointer;
+  transition: 300ms;
+  padding: 0 0.5em;
+  border-radius: 0.25rem;
+}
+.sm-btn:hover {
+  background-color: var(--clr-600);
+}
+
+.s-btn,
+.p-btn {
+  display: block;
+  border: none;
+  outline: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: 300ms;
+  font-size: var(--fs-1);
+  white-space: nowrap;
+  font-weight: 700;
+  user-select: none;
+}
+.p-btn {
+  background-color: var(--clr-600);
+}
+.s-btn {
+  background-color: transparent;
+}
+.s-btn:hover,
+.s-btn:focus {
+  background-color: var(--clr-light-900);
+}
+.p-btn:hover,
+.p-btn:focus {
+  background-color: var(--clr-700);
+}
+
+.chk {
+  appearance: none;
+}
+.lbl-chk {
+  position: relative;
+  padding-left: 2em;
+  user-select: none;
+  cursor: pointer;
+  transition: 300ms;
+  font-size: var(--fs-2);
+  outline: none;
+}
+.lbl-chk:hover,
+.lbl-chk:focus {
+  color: var(--clr-500);
+  opacity: 1 !important;
+}
+.lbl-chk::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25em;
+  height: 1.25em;
+  border: 1px solid;
+  transition: 150ms;
+}
+.lbl-chk::after {
+  content: "";
+  position: absolute;
+  left: 2em;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 3px;
+  background-color: var(--clr-500);
+  transition: 150ms;
+}
+.chk:checked + .lbl-chk {
+  opacity: 0.6;
+}
+.chk:checked + .lbl-chk::after {
+  width: calc(100% - 2em);
+}
+.chk:checked + .lbl-chk::before {
+  width: 0.5em;
+  left: 0.5em;
+  transform: translateY(-60%) rotate(45deg);
+  border-color: var(--clr-500);
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-width: 2px;
+}
+
+/* End Components */
+
+/* Start Form */
+
+div[data-form-status="hide"] {
+  display: none;
+}
+.form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  max-height: 80vh;
+  width: min(600px, 100% - 3rem);
+  border-radius: 1rem;
+  background-color: black;
+  overflow-y: auto;
+  box-shadow: 6px 4px 20px 0px black;
+}
+
+.scroll-layout::-webkit-scrollbar {
+  background-color: var(--clr-light-900);
+  width: 10px;
+  border-radius: 100vmax;
+}
+.scroll-layout::-webkit-scrollbar-thumb {
+  background-color: var(--clr-light-800);
+  border-radius: 100vmax;
+}
+
+.form .header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(14.5px);
+  padding: 1em;
+}
+
+.form .header .edit-input::selection {
+  background-color: var(--clr-500);
+  color: black;
+}
+.form .header .edit-input {
+  outline: none;
+  background-color: transparent;
+  font-size: var(--fs-4);
+  font-weight: 700;
+  padding: 0.25em 0.5em;
+  width: 100%;
+  transition: 300ms;
+}
+.form .header .edit-input:disabled {
+  border-color: transparent;
+}
+
+.form .body {
+  margin-block: calc(0.125em - 1px);
+}
+.form .body .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+.form .body .row:nth-of-type(odd) {
+  background-color: var(--clr-light-900);
+}
+.form .body .row .input {
+  position: relative;
+}
+.form .body .row .btns {
+  margin-left: auto;
+}
+
+.form .footer {
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 1em;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(14.5px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1em;
+}
+
+/* End Form */
+
+.container {
+  width: min(600px, 100% - 3rem);
+  margin-inline: auto;
+  padding: 1em;
+}
+
+.container header {
+  position: relative;
+}
+.container header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(100% + 2em);
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 0) 0%,
+    rgba(0, 255, 0, 1) 50%,
+    rgba(252, 176, 69, 0) 100%
+  );
+  border-radius: 100vmax;
+}
+.container header h1 {
+  text-align: center;
+  font-size: var(--fs-6);
+  user-select: none;
+}
+
+.container main {
+  margin-top: 3em;
+}
+.container main .tasks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+.container main .tasks button {
+  background-color: var(--clr-light-500);
+}
+.container main .tasks button:hover {
+  background-color: var(--clr-light-600);
+}
+.container main .tasks button span {
+  position: relative;
+  display: block;
+  width: 1.75em;
+  height: 1.75em;
+}
+.container main .tasks button span::before,
+.container main .tasks button span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  border-radius: 100vmax;
+  background-color: var(--clr-light-900);
+  transition: 300ms;
+}
+.container main .tasks button span::before {
+  top: 33%;
+  transform: translateX(-30%);
+}
+.container main .tasks button span::after {
+  top: 66%;
+  transform: translateX(-50%);
+}
+.container main .tasks button:hover span::before {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+.container main .tasks button:hover span::after {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
